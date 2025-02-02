@@ -178,6 +178,13 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
     docker-php-ext-enable redis; \
 fi
 
+# Install MySQL Client:
+ARG INSTALL_MYSQL_CLIENT=false
+RUN if [ ${INSTALL_MYSQL_CLIENT} = true ]; then \
+  apk --update add mysql-client \
+  && apk add mariadb-connector-c \
+  ;fi
+
 ARG INSTALL_FFMPEG=false
 RUN if [ ${INSTALL_FFMPEG} = true ]; then \
    # Add ffmpeg to horizon
